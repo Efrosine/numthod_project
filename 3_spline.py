@@ -40,7 +40,7 @@ def cubic_spline_interpolation(x, y):
 
 
 x = np.array([100, 200, 300, 400, 500])
-y = np.array([10, 12, 21, 23, 25])
+y = np.array([11, 13, 21, 23, 25])
 
 
 spline = cubic_spline_interpolation(x, y)
