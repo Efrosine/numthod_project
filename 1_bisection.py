@@ -1,9 +1,12 @@
 import matplotlib.pyplot as plt
+from prettytable import PrettyTable
 
 def f(x):
     return 500 - x**3 + 8 * x
 
-def bisection(func, x1, x2, tol=0.001, max_iter=100):
+table = PrettyTable(['n','x1','f(x1)','x2','f(x2)','x3','f(x3)','relative_error'])
+
+def bisection(func, x1, x2, tol=0.01, max_iter=100):
     
     if func(x1) * func(x2) >= 0:
         raise ValueError("The function must have opposite signs.")
@@ -17,6 +20,8 @@ def bisection(func, x1, x2, tol=0.001, max_iter=100):
 
         relative_error = abs((x2 - x1) / x3)
         relative_errors.append(relative_error) 
+        
+        table.add_row([iter_count,x1,f(x1),x2,f(x2),x3,f(x3),relative_error])
 
         if func(x3) == 0:
             break
@@ -33,6 +38,7 @@ def bisection(func, x1, x2, tol=0.001, max_iter=100):
 
 
 root,relative_errors  = bisection(f, 0, 10)
+print(table)
 print("Root found:", root)
 plt.plot(range(1, len(relative_errors) + 1), relative_errors)
 plt.xlabel("Iteration")

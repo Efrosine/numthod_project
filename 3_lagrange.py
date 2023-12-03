@@ -1,4 +1,5 @@
 def lagrange_interpolation(x, y, xi):
+
     n = len(x)
     yi = 0
 
